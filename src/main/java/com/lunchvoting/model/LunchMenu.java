@@ -1,12 +1,12 @@
 package com.lunchvoting.model;
 
 import java.time.LocalDate;
-import java.util.Map;
+import java.util.Set;
 
 public class LunchMenu extends AbstractBaseEntity {
     private LocalDate date;
 
     private Restaurant restaurant;
 
-    Map<String,Long> dishes;
+    Set<Dish> dishes;
 }

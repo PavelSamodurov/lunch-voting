@@ -1,4 +1,4 @@
 package com.lunchvoting.model;
 
-public class Restaurant {
+public class Restaurant extends AbstractNamedEntity {
 }
