@@ -11,17 +11,24 @@
 
     <context:component-scan base-package="com.lunchvoting.**.repository"/>
 
+    <context:property-placeholder location="classpath:db/h2database.properties" system-properties-mode="OVERRIDE"/>
+
     <jdbc:embedded-database id="dataSource" type="H2">
         <jdbc:script location="classpath:db/create-db.sql" />
-        <jdbc:script location="classpath:db/insert-data.sql" />
         <jdbc:script encoding="utf-8" location="classpath:db/insert-data.sql"/>
     </jdbc:embedded-database>
 
-    <context:property-placeholder location="classpath:db/h2database.properties" system-properties-mode="OVERRIDE"/>
+    <!--no pooling-->
+    <bean id="dataSource"
+          class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+          p:driverClassName="${spring.datasource.driverClassName}"
+          p:url="${spring.datasource.url}"
+          p:username="${spring.datasource.username}"
+          p:password="${spring.datasource.password}"/>
 
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
           p:dataSource-ref="dataSource"
-          p:packagesToScan="ru.javawebinar.**.model">
+          p:packagesToScan="com.lunchvoting.**.model">
         <!--p:persistenceUnitName="persistenceUnit">-->
 
         <property name="jpaPropertyMap">
@@ -38,5 +45,11 @@
             </bean>
         </property>
     </bean>
+
+    <!-- Transaction manager for a single JPA EntityManagerFactory (alternative to JTA) -->
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
+          p:entityManagerFactory-ref="entityManagerFactory"/>
+
+    <bean class="com.lunchvoting.repository.JpaUtil"/>
 
 </beans>

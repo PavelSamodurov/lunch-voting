@@ -1,18 +1,26 @@
 package com.lunchvoting.repository;
 
 import com.lunchvoting.model.LunchMenu;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import java.util.List;
+
 
 @Repository
 public class LunchMenuRepository {
-    @PersistenceContext
-    private EntityManager em;
 
-    public LunchMenu delete(LunchMenu lunchMenu){
-        em.persist(lunchMenu);
-        return lunchMenu;
+    CrudLunchMenuRepository crudLunchMenuRepository;
+
+    public boolean delete(int id) {
+        return crudLunchMenuRepository.deleteById(id) != 0;
+    }
+
+    public List<LunchMenu> getAll() {
+        return crudLunchMenuRepository.getAll();
+    }
+
+    public LunchMenu save(LunchMenu lunchMenu){
+        return crudLunchMenuRepository.save(lunchMenu);
     }
 }
