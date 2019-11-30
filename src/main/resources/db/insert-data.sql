@@ -46,3 +46,7 @@ INSERT INTO dish (name, price, lunch_menu_id) VALUES
 ('Клаб-сендвич с лососем',490,100013),
 ('Грибной крем-суп',390,100013),
 ('Сациви с курицей',470,100014);
+
+INSERT INTO user (name) VALUES
+('user1'),
+('user2')

@@ -5,26 +5,29 @@
        xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:jdbc="http://www.springframework.org/schema/jdbc"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd http://www.springframework.org/schema/data/jpa https://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
     <tx:annotation-driven/>
 
     <context:component-scan base-package="com.lunchvoting.**.repository"/>
+    <jpa:repositories base-package="com.lunchvoting.**.repository"/>
 
     <context:property-placeholder location="classpath:db/h2database.properties" system-properties-mode="OVERRIDE"/>
 
     <jdbc:embedded-database id="dataSource" type="H2">
-        <jdbc:script location="classpath:db/create-db.sql" />
-        <jdbc:script encoding="utf-8" location="classpath:db/insert-data.sql"/>
+        <jdbc:script location="classpath:${spring.datasource.initLocation}" />
+        <jdbc:script encoding="utf-8" location="classpath:${spring.datasource.insertData}"/>
     </jdbc:embedded-database>
 
-    <!--no pooling-->
-    <bean id="dataSource"
-          class="org.springframework.jdbc.datasource.DriverManagerDataSource"
-          p:driverClassName="${spring.datasource.driverClassName}"
-          p:url="${spring.datasource.url}"
-          p:username="${spring.datasource.username}"
-          p:password="${spring.datasource.password}"/>
+    <bean id="database.dataSource" class="org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy">
+        <constructor-arg>
+            <bean class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+                <property name="driverClass" value="${spring.datasource.driverClassName}" />
+                <property name="url" value="${spring.datasource.url}" />
+            </bean>
+        </constructor-arg>
+    </bean>
 
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
           p:dataSource-ref="dataSource"

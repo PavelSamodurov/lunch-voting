@@ -8,6 +8,9 @@ import java.util.Set;
 public class LunchMenu extends AbstractBaseEntity {
     private LocalDate date;
 
+    public LunchMenu() {
+    }
+
     @ManyToOne(fetch = FetchType.LAZY)
     private Restaurant restaurant;
 

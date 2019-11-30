@@ -1,6 +1,12 @@
 package com.lunchvoting.model;
 
+import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
+
+@MappedSuperclass
 public class AbstractNamedEntity extends AbstractBaseEntity {
+
+    @Column(name = "name", nullable = false)
     protected String name;
 
     protected AbstractNamedEntity() {

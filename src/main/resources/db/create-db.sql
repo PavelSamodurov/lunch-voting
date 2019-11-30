@@ -27,3 +27,9 @@ CREATE TABLE dish
   lunch_menu_id    INTEGER                 NOT NULL,
   FOREIGN KEY (lunch_menu_id) REFERENCES lunch_menu (id) ON DELETE CASCADE
 );
+
+CREATE TABLE user
+(
+    id               INTEGER DEFAULT global_seq.nextval PRIMARY KEY,
+    name             VARCHAR(255)            NOT NULL
+);
