@@ -29,4 +29,12 @@ public class LunchMenu extends AbstractBaseEntity {
     public void setDishes(Set<Dish> dishes) {
         this.dishes = dishes;
     }
+
+    public Restaurant getRestaurant() {
+        return restaurant;
+    }
+
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
+    }
 }

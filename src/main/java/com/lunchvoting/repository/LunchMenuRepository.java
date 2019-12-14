@@ -1,6 +1,7 @@
 package com.lunchvoting.repository;
 
 import com.lunchvoting.model.LunchMenu;
+import com.lunchvoting.model.Restaurant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,7 +23,8 @@ public class LunchMenuRepository {
     }
 
     @Transactional
-    public LunchMenu save(LunchMenu lunchMenu){
+    public LunchMenu save(LunchMenu lunchMenu, Restaurant restaurant){
+        lunchMenu.setRestaurant(restaurant);
         return crudLunchMenuRepository.save(lunchMenu);
     }
 }
