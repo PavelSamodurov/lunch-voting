@@ -6,7 +6,7 @@ import javax.persistence.*;
 // http://stackoverflow.com/questions/594597/hibernate-annotations-which-is-better-field-or-property-access
 @Access(AccessType.FIELD)
 public class AbstractBaseEntity {
-//    public static final int START_SEQ = 100000;
+    public static final int START_SEQ = 100_000;
 
     @Id
 //    @SequenceGenerator(name = "global_seq", sequenceName = "global_seq", allocationSize = 1, initialValue = START_SEQ)

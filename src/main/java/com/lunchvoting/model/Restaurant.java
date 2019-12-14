@@ -12,4 +12,11 @@ public class Restaurant extends AbstractNamedEntity {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant")
     protected List<LunchMenu> lunchMenuList;
+
+    public Restaurant() {
+    }
+
+    public Restaurant(Integer id, String name) {
+        super(id, name);
+    }
 }

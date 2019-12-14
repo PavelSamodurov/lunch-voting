@@ -1,6 +1,7 @@
 DELETE FROM restaurant;
 DELETE FROM lunch_menu;
 DELETE FROM dish;
+DELETE FROM user;
 ALTER SEQUENCE global_seq RESTART WITH 100000;
 
 INSERT INTO restaurant (name) VALUES
