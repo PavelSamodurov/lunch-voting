@@ -25,16 +25,16 @@ public class SpringMain {
             UserRepository userRepository = applicationContext.getBean(UserRepository.class);
             RestaurantRepository restaurantRepository = applicationContext.getBean(RestaurantRepository.class);
 
-            List<User> allUsers = userRepository.getAll();
+            List<User> allUsers = userRepository.findAll();
 
             for (User user: allUsers){
                 System.out.println(user.toString());
             }
 
-            Restaurant Megobari = restaurantRepository.get("Megobari");
+            Restaurant Megobari = restaurantRepository.findByName("Megobari").get();
             LunchMenu newLunchMenu = new LunchMenu(3, LocalDate.now());
             lunchMenuRepository.save(newLunchMenu,Megobari);
-            List<LunchMenu> all = lunchMenuRepository.getAll();
+            List<LunchMenu> all = lunchMenuRepository.findAllByDate(LocalDate.now());
             System.out.println("Count" + all.size());
             for (LunchMenu lunchMenu : all){
                 System.out.println(lunchMenu);

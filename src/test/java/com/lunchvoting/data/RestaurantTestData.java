@@ -6,7 +6,7 @@ import com.lunchvoting.repository.TestMatchers;
 import static com.lunchvoting.model.AbstractBaseEntity.START_SEQ;
 
 public class RestaurantTestData {
-    public static final int RESTAURANT1_ID = START_SEQ;
+    public static final int RESTAURANT1_ID = START_SEQ + 2;
 
     public static final Restaurant RESTAURANT1 = new Restaurant(RESTAURANT1_ID,"Джумбус");
 

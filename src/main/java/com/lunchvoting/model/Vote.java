@@ -5,15 +5,19 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "dish")
-public class Dish extends AbstractNamedEntity {
-    private Long price;
+@Table(name = "vote")
+public class Vote extends AbstractBaseEntity {
+    @ManyToOne
+    User user;
 
     @ManyToOne
     LunchMenu lunchMenu;
 
-    public LunchMenu getLunchMenu() {
-        return lunchMenu;
+    public Vote() {
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public void setLunchMenu(LunchMenu lunchMenu) {

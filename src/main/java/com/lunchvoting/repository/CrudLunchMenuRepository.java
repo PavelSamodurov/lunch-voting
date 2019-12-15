@@ -1,13 +1,15 @@
 package com.lunchvoting.repository;
 
 import com.lunchvoting.model.LunchMenu;
+import com.lunchvoting.model.Restaurant;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Transactional(readOnly = true)
 public interface CrudLunchMenuRepository extends JpaRepository<LunchMenu, Integer> {
@@ -15,11 +17,7 @@ public interface CrudLunchMenuRepository extends JpaRepository<LunchMenu, Intege
     @Transactional
     int deleteById(@Param("id") int id);
 
-    @Query("SELECT lm FROM LunchMenu lm")
-    List<LunchMenu> getAll();
+    List<LunchMenu> findAllByDate(LocalDate date);
 
-    @Modifying
-    @Transactional
-    public LunchMenu save(LunchMenu lunchMenu);
-
+    Optional<LunchMenu> findByRestaurantAndDate(Restaurant restaurant, LocalDate date);
 }
