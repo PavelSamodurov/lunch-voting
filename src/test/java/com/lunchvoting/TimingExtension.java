@@ -1,4 +1,4 @@
-package com.lunchvoting.repository;
+package com.lunchvoting;
 
 import org.junit.jupiter.api.extension.*;
 import org.slf4j.Logger;

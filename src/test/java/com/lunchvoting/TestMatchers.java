@@ -1,10 +1,11 @@
-package com.lunchvoting.repository;
+package com.lunchvoting;
 
 import org.springframework.test.web.servlet.ResultMatcher;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static com.lunchvoting.TestUtil.readListFromJsonMvcResult;
 
 public class TestMatchers<T> {
     private final Class<T> clazz;
@@ -45,4 +46,15 @@ public class TestMatchers<T> {
         }
     }
 
+    public ResultMatcher contentJson(T expected) {
+        return result -> assertMatch(TestUtil.readFromJsonMvcResult(result, clazz), expected);
+    }
+
+    public ResultMatcher contentJson(T... expected) {
+        return contentJson(List.of(expected));
+    }
+
+    public ResultMatcher contentJson(Iterable<T> expected) {
+        return result -> assertMatch(readListFromJsonMvcResult(result, clazz), expected);
+    }
 }

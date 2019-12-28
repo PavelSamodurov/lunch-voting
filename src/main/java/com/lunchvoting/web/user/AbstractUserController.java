@@ -1,14 +1,14 @@
 package com.lunchvoting.web.user;
 
-import com.lunchvoting.model.User;
-import com.lunchvoting.service.UserService;
-import com.lunchvoting.to.UserTo;
-import com.lunchvoting.util.UserUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
+import com.lunchvoting.model.User;
+import com.lunchvoting.service.UserService;
+import com.lunchvoting.to.UserTo;
+import com.lunchvoting.util.UserUtil;
 
 import java.util.List;
 

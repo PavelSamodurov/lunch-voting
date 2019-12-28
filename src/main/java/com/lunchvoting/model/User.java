@@ -2,9 +2,8 @@ package com.lunchvoting.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.lunchvoting.HasEmail;
-import com.lunchvoting.web.View;
+import com.lunchvoting.View;
 import org.hibernate.annotations.BatchSize;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.validator.constraints.SafeHtml;
 import org.springframework.util.CollectionUtils;
 

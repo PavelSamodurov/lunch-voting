@@ -1,13 +1,13 @@
 package com.lunchvoting.web.user;
 
-import com.lunchvoting.model.User;
-import com.lunchvoting.web.View;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import com.lunchvoting.View;
+import com.lunchvoting.model.User;
 
 import java.net.URI;
 import java.util.List;

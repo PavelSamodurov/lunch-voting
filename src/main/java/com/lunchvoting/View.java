@@ -1,4 +1,4 @@
-package com.lunchvoting.web;
+package com.lunchvoting;
 
 import javax.validation.groups.Default;
 

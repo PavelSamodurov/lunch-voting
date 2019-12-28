@@ -1,6 +1,6 @@
 package com.lunchvoting.model;
 
-import com.lunchvoting.web.View;
+import com.lunchvoting.View;
 import org.hibernate.validator.constraints.SafeHtml;
 
 import javax.persistence.Column;
