@@ -32,6 +32,7 @@
         <!-- Hibernate -->
         <hibernate.version>5.4.7.Final</hibernate.version>
         <hibernate-validator.version>6.0.17.Final</hibernate-validator.version>
+        <jsoup.version>1.12.1</jsoup.version>
         <javax-el.version>3.0.1-b11</javax-el.version>
 
         <!--    Tests  -->
@@ -124,6 +125,16 @@
             <groupId>org.hibernate.validator</groupId>
             <artifactId>hibernate-validator</artifactId>
             <version>${hibernate-validator.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>${jsoup.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-jcache</artifactId>
+            <version>${hibernate.version}</version>
         </dependency>
 
         <!--http://hibernate.org/validator/documentation/getting-started/#unified-expression-language-el-->

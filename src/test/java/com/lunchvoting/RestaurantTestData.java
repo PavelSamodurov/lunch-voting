@@ -1,7 +1,6 @@
-package com.lunchvoting.data;
+package com.lunchvoting;
 
 import com.lunchvoting.model.Restaurant;
-import com.lunchvoting.repository.TestMatchers;
 
 import static com.lunchvoting.model.AbstractBaseEntity.START_SEQ;
 
