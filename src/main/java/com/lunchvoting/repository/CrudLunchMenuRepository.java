@@ -17,7 +17,7 @@ public interface CrudLunchMenuRepository extends JpaRepository<LunchMenu, Intege
     @Transactional
     int deleteById(@Param("id") int id);
 
-    List<LunchMenu> findAllByDate(LocalDate date);
+    List<LunchMenu> getAllByDate(LocalDate date);
 
-    Optional<LunchMenu> findByRestaurantAndDate(Restaurant restaurant, LocalDate date);
+    Optional<LunchMenu> getByRestaurantAndDate(Restaurant restaurant, LocalDate date);
 }

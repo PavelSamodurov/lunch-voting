@@ -23,11 +23,11 @@ public class DishRepository {
         return crudDishRepository.delete(id) != 0;
     }
 
-    List<Dish> findAllByLunchMenu_Date(LocalDate date){
-        return crudDishRepository.findAllByLunchMenu_Date(date);
+    List<Dish> getAllByLunchMenu_Date(LocalDate date){
+        return crudDishRepository.getAllByLunchMenu_Date(date);
     }
 
-    List<Dish> findAllByLunchMenu_DateAndLunchMenu_Restaurant(LocalDate date, Restaurant restaurant){
-        return crudDishRepository.findAllByLunchMenu_DateAndLunchMenu_Restaurant(date,restaurant);
+    List<Dish> getAllByLunchMenu_DateAndLunchMenu_Restaurant(LocalDate date, Restaurant restaurant){
+        return crudDishRepository.getAllByLunchMenu_DateAndLunchMenu_Restaurant(date,restaurant);
     }
 }

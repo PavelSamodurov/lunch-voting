@@ -21,11 +21,11 @@ public class RestaurantRepository {
         return crudRestaurantRepository.delete(id) != 0;
     }
 
-    public Optional<Restaurant> findByName(String restaurantName){
-        return crudRestaurantRepository.findByName(restaurantName);
+    public Optional<Restaurant> getByName(String restaurantName){
+        return crudRestaurantRepository.getByName(restaurantName);
     }
 
-    public List<Restaurant> findAll(){
+    public List<Restaurant> getAll(){
         return crudRestaurantRepository.findAll();
     }
 

@@ -1,12 +1,20 @@
 package com.lunchvoting.model;
 
+import com.lunchvoting.web.View;
+import org.hibernate.validator.constraints.SafeHtml;
+
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @MappedSuperclass
-public class AbstractNamedEntity extends AbstractBaseEntity {
+public abstract class AbstractNamedEntity extends AbstractBaseEntity {
 
+    @NotBlank
+    @Size(min = 2, max = 100)
     @Column(name = "name", nullable = false)
+    @SafeHtml(groups = {View.Web.class})
     protected String name;
 
     protected AbstractNamedEntity() {

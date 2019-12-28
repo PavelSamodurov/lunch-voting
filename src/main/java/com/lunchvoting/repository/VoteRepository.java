@@ -27,11 +27,11 @@ public class VoteRepository {
         return crudVoteRepository.delete(id) != 0;
     }
 
-    public Optional<Vote> findByUserAndLunchMenu_Date(User user, LocalDate date){
-        return crudVoteRepository.findByUserAndLunchMenu_Date(user, date);
+    public Optional<Vote> getByUserAndLunchMenu_Date(User user, LocalDate date){
+        return crudVoteRepository.getByUserAndLunchMenu_Date(user, date);
     }
 
-    public List<Vote> findAllByLunchMenu_RestaurantAndLunchMenu_Date(Restaurant restaurant, LocalDate date){
-        return crudVoteRepository.findAllByLunchMenu_RestaurantAndLunchMenu_Date(restaurant, date);
+    public List<Vote> getAllByLunchMenu_RestaurantAndLunchMenu_Date(Restaurant restaurant, LocalDate date){
+        return crudVoteRepository.getAllByLunchMenu_RestaurantAndLunchMenu_Date(restaurant, date);
     }
 }

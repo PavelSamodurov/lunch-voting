@@ -14,7 +14,7 @@ class RestaurantRepositoryTest extends AbstractRepositoryTest {
 
     @Test
     void get() {
-        Restaurant restaurant = restaurantRepository.findByName("Джумбус").get();
+        Restaurant restaurant = restaurantRepository.getByName("Джумбус").get();
         RESTAURANT_MATCHERS.assertMatch(restaurant, RESTAURANT1);
     }
 }

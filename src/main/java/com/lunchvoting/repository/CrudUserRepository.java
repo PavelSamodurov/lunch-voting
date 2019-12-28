@@ -17,9 +17,7 @@ public interface CrudUserRepository extends JpaRepository<User, Integer> {
     @Query("DELETE FROM User u WHERE u.id=:id")
     int delete(@Param("id") int id);
 
-    List<User> findAll();
+    Optional<User> getById(int id);
 
-    Optional<User> findById(int id);
-
-    Optional<User> findByEmail(String email);
+    Optional<User> getByEmail(String email);
 }
