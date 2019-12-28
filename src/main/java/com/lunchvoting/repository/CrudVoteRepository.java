@@ -22,5 +22,5 @@ public interface CrudVoteRepository extends JpaRepository<Vote, Integer> {
 
     Optional<Vote> findByUserAndLunchMenu_Date(User user, LocalDate date);
 
-    List<Vote> findAllByLunchMenu_RestaurantAndLunchMenu_Date(Restaurant restaurant, LocalDate localDate);
+    List<Vote> findAllByLunchMenu_RestaurantAndLunchMenu_Date(Restaurant restaurant, LocalDate date);
 }
