@@ -64,7 +64,7 @@ class AdminRestControllerTest extends AbstractControllerTest {
         perform(doDelete(USER_ID).basicAuth(ADMIN))
                 .andDo(print())
                 .andExpect(status().isNoContent());
-        assertThrows(NoSuchElementException.class, () -> userService.get(USER_ID));
+        assertThrows(NotFoundException.class, () -> userService.get(USER_ID));
     }
 
     @Test

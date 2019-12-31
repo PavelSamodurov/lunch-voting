@@ -5,6 +5,7 @@ import com.lunchvoting.model.User;
 import com.lunchvoting.repository.UserRepository;
 import com.lunchvoting.to.UserTo;
 import com.lunchvoting.util.UserUtil;
+import com.lunchvoting.util.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
@@ -49,12 +50,14 @@ public class UserService implements UserDetailsService {
     }
 
     public User get(int id) {
-        return checkNotFoundWithId(repository.getById(id).get(), id);
+        return repository.getById(id)
+                .orElseThrow(()-> new NotFoundException("id=" + id));
     }
 
     public User getByEmail(String email) {
         Assert.notNull(email, "email must not be null");
-        return checkNotFound(repository.getByEmail(email).get(), "email=" + email);
+        return repository.getByEmail(email)
+                .orElseThrow(() -> new NotFoundException("email=" + email));
     }
 
 //    @Cacheable("users")
@@ -81,20 +84,18 @@ public class UserService implements UserDetailsService {
     public void enable(int id, boolean enabled) {
         User user = get(id);
         user.setEnabled(enabled);
-        repository.save(user);  // !! need only for JDBC implementation
     }
 
     @Override
     public AuthorizedUser loadUserByUsername(String email) throws UsernameNotFoundException {
-        User user = repository.getByEmail(email.toLowerCase()).get();
-        if (user == null) {
-            throw new UsernameNotFoundException("User " + email + " is not found");
-        }
+        User user = repository.getByEmail(email.toLowerCase())
+                .orElseThrow(() -> new UsernameNotFoundException("User " + email + " is not found"));
         return new AuthorizedUser(user);
     }
 
     private User prepareAndSave(User user) {
-        return repository.save(prepareToSave(user, passwordEncoder));
+        return repository.save(user);
+//        return repository.save(prepareToSave(user, passwordEncoder));
     }
 
 }

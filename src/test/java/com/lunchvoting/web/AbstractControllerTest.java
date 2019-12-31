@@ -32,7 +32,6 @@ import static com.lunchvoting.web.AbstractControllerTest.RequestWrapper.wrap;
 //@WebAppConfiguration
 //@ExtendWith(SpringExtension.class)
 @Transactional
-
 abstract public class AbstractControllerTest {
 
     private static final CharacterEncodingFilter CHARACTER_ENCODING_FILTER = new CharacterEncodingFilter();
