@@ -10,6 +10,7 @@ import java.util.List;
 
 import static com.lunchvoting.LunchMenuTestData.*;
 import static com.lunchvoting.RestaurantTestData.RESTAURANT1;
+import static com.lunchvoting.RestaurantTestData.RESTAURANT1_ID;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LunchMenuServiceTest extends AbstractServiceTest {
@@ -48,13 +49,13 @@ class LunchMenuServiceTest extends AbstractServiceTest {
 
     @Test
     void getByRestaurantAndDate() {
-        LunchMenu lunchMenu = lunchMenuService.getByRestaurantAndDate(LocalDate.now(), RESTAURANT1);
+        LunchMenu lunchMenu = lunchMenuService.getByRestaurantIdAndDate(RESTAURANT1_ID, LocalDate.now());
         LUNCH_MENU_MATCHERS.assertMatch(lunchMenu, LUNCH_MENU1);
     }
 
     @Test
     void getAllByRestaurant() {
-        List<LunchMenu> lunchMenuList = lunchMenuService.getAllByRestaurant(RESTAURANT1);
+        List<LunchMenu> lunchMenuList = lunchMenuService.getAllByRestaurantId(RESTAURANT1_ID);
         LUNCH_MENU_MATCHERS.assertMatch(lunchMenuList, LUNCH_MENU_LIST_OF_RESTAURANT1);
     }
 

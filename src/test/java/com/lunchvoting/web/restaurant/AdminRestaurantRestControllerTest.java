@@ -19,13 +19,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-class RestaurantRestControllerTest extends AbstractControllerTest {
+class AdminRestaurantRestControllerTest extends AbstractControllerTest {
 
     @Autowired
     private RestaurantService restaurantService;
 
-    public RestaurantRestControllerTest() {
-        super(RestaurantRestController.REST_URL);
+    public AdminRestaurantRestControllerTest() {
+        super(AdminRestaurantRestController.REST_URL);
     }
 
     @Test
@@ -39,7 +39,7 @@ class RestaurantRestControllerTest extends AbstractControllerTest {
 
     @Test
     void getAll() throws Exception {
-        perform(doGet().basicAuth(USER))
+        perform(doGet().basicAuth(ADMIN))
                 .andExpect(status().isOk())
                 .andDo(print())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))

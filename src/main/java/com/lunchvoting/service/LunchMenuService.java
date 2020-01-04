@@ -34,13 +34,13 @@ public class LunchMenuService {
         return lunchMenuRepository.save(lunchMenu);
     }
 
-    public LunchMenu getByRestaurantAndDate(LocalDate date, Restaurant restaurant){
-        return lunchMenuRepository.getByRestaurantAndDate(restaurant, date)
-                .orElseThrow(()-> new NotFoundException("Lunch menu for " + restaurant.getName() + " on " + date + " is not found"));
+    public LunchMenu getByRestaurantIdAndDate(int restaurantId, LocalDate date){
+        return lunchMenuRepository.getByRestaurantIdAndDate(restaurantId, date)
+                .orElseThrow(()-> new NotFoundException("Lunch menu for " + restaurantId + " on " + date + " is not found"));
     }
 
-    public List<LunchMenu> getAllByRestaurant(Restaurant restaurant){
-        return lunchMenuRepository.getAllByRestaurant(restaurant);
+    public List<LunchMenu> getAllByRestaurantId(int restaurantId){
+        return lunchMenuRepository.getAllByRestaurantId(restaurantId);
     }
 
     public List<LunchMenu> getAllByDate(LocalDate date){

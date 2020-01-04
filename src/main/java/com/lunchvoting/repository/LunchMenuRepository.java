@@ -29,12 +29,12 @@ public class LunchMenuRepository {
         return crudLunchMenuRepository.save(lunchMenu);
     }
 
-    public Optional<LunchMenu> getByRestaurantAndDate(Restaurant restaurant, LocalDate date){
-        return crudLunchMenuRepository.getByRestaurantAndDate(restaurant, date);
+    public Optional<LunchMenu> getByRestaurantIdAndDate(int restaurantId, LocalDate date){
+        return crudLunchMenuRepository.getByRestaurant_IdAndDate(restaurantId, date);
     }
 
-    public List<LunchMenu> getAllByRestaurant(Restaurant restaurant){
-        return crudLunchMenuRepository.getAllByRestaurant(restaurant);
+    public List<LunchMenu> getAllByRestaurantId(int restaurantId){
+        return crudLunchMenuRepository.getAllByRestaurant_Id(restaurantId);
     }
 
     public List<LunchMenu> getAllByDate(LocalDate date) {

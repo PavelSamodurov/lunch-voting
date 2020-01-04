@@ -21,9 +21,9 @@ public interface CrudLunchMenuRepository extends JpaRepository<LunchMenu, Intege
 
     List<LunchMenu> getAllByDate(LocalDate date);
 
-    List<LunchMenu> getAllByRestaurant(Restaurant restaurant);
+    List<LunchMenu> getAllByRestaurant_Id(int restaurantId);
 
-    Optional<LunchMenu> getByRestaurantAndDate(Restaurant restaurant, LocalDate date);
+    Optional<LunchMenu> getByRestaurant_IdAndDate(int restaurantId, LocalDate date);
 
     Optional<LunchMenu> getById(int id);
 }

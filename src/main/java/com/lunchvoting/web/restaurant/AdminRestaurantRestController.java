@@ -1,11 +1,10 @@
 package com.lunchvoting.web.restaurant;
 
 import com.lunchvoting.View;
+import com.lunchvoting.model.LunchMenu;
 import com.lunchvoting.model.Restaurant;
-import com.lunchvoting.service.RestaurantService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -14,30 +13,29 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.time.LocalDate;
 import java.util.List;
 
 import static com.lunchvoting.util.ValidationUtil.assureIdConsistent;
 import static com.lunchvoting.util.ValidationUtil.checkNew;
 
 @RestController
-@RequestMapping(value = RestaurantRestController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
-public class RestaurantRestController {
-    static final String REST_URL = "/rest/restaurants";
+@RequestMapping(value = AdminRestaurantRestController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
+public class AdminRestaurantRestController extends AbstractRestaurantController{
+    static final String REST_URL = "/rest/admin/restaurants";
 
     private final Logger log = LoggerFactory.getLogger(getClass());
 
-    @Autowired
-    RestaurantService restaurantService;
-
+    @Override
     @GetMapping("/{id}")
     public Restaurant get(@PathVariable int id){
-        log.info("get restaurant {}", id);
-        return restaurantService.get(id);
+        return super.get(id);
     }
 
+    @Override
     @GetMapping
     public List<Restaurant> getAll(){
-        return restaurantService.getAll();
+        return super.getAll();
     }
 
     @DeleteMapping("/{id}")
@@ -68,8 +66,9 @@ public class RestaurantRestController {
         return ResponseEntity.created(uriOfNewResource).body(created);
     }
 
+    @Override
     @GetMapping("/by")
     public Restaurant getByName(String name){
-        return restaurantService.getByName(name);
+        return super.getByName(name);
     }
 }
