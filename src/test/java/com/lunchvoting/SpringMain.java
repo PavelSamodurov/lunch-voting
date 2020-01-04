@@ -32,8 +32,7 @@ public class SpringMain {
             }
 
             Restaurant Megobari = restaurantRepository.getByName("Megobari").get();
-            LunchMenu newLunchMenu = new LunchMenu(3, LocalDate.now());
-            lunchMenuRepository.save(newLunchMenu,Megobari);
+            LunchMenu newLunchMenu = new LunchMenu(3, LocalDate.now(),Megobari);
             List<LunchMenu> all = lunchMenuRepository.getAllByDate(LocalDate.now());
             System.out.println("Count" + all.size());
             for (LunchMenu lunchMenu : all){

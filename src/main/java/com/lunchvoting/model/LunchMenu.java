@@ -6,20 +6,27 @@ import java.util.Set;
 @Entity
 @Table(name = "lunch_menu")
 public class LunchMenu extends AbstractBaseEntity {
+
     private LocalDate date;
 
     public LunchMenu() {
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Restaurant restaurant;
 
     @OneToMany
+    @JoinColumn(name = "lunch_menu_id", nullable = false)
     Set<Dish> dishes;
 
-    public LunchMenu(Integer id, LocalDate date) {
+    public LunchMenu(Integer id, LocalDate date, Restaurant restaurant) {
         super(id);
         this.date = date;
+        this.restaurant = restaurant;
+    }
+
+    public LunchMenu(LocalDate date, Restaurant restaurant) {
+        this(null, date, restaurant);
     }
 
     public Set<Dish> getDishes() {

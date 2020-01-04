@@ -16,18 +16,25 @@ public class LunchMenuRepository {
     @Autowired
     private CrudLunchMenuRepository crudLunchMenuRepository;
 
+    public Optional<LunchMenu> get(int id) {
+        return crudLunchMenuRepository.getById(id);
+    }
+
     public boolean delete(int id) {
         return crudLunchMenuRepository.deleteById(id) != 0;
     }
 
     @Transactional
-    public LunchMenu save(LunchMenu lunchMenu, Restaurant restaurant){
-        lunchMenu.setRestaurant(restaurant);
+    public LunchMenu save(LunchMenu lunchMenu){
         return crudLunchMenuRepository.save(lunchMenu);
     }
 
     public Optional<LunchMenu> getByRestaurantAndDate(Restaurant restaurant, LocalDate date){
         return crudLunchMenuRepository.getByRestaurantAndDate(restaurant, date);
+    }
+
+    public List<LunchMenu> getAllByRestaurant(Restaurant restaurant){
+        return crudLunchMenuRepository.getAllByRestaurant(restaurant);
     }
 
     public List<LunchMenu> getAllByDate(LocalDate date) {
