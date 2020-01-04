@@ -1,5 +1,7 @@
 package com.lunchvoting.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
@@ -11,6 +13,7 @@ import java.util.List;
 public class Restaurant extends AbstractNamedEntity {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant")
+    @JsonIgnore
     protected List<LunchMenu> lunchMenuList;
 
     public Restaurant() {
