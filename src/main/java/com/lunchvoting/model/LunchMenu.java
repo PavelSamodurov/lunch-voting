@@ -15,8 +15,7 @@ public class LunchMenu extends AbstractBaseEntity {
     @ManyToOne(fetch = FetchType.EAGER)
     private Restaurant restaurant;
 
-    @OneToMany
-    @JoinColumn(name = "lunch_menu_id", nullable = false)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "lunchMenu")
     Set<Dish> dishes;
 
     public LunchMenu(Integer id, LocalDate date, Restaurant restaurant) {

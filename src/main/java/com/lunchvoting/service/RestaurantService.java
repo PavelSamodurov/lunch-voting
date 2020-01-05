@@ -32,7 +32,7 @@ public class RestaurantService {
 
     public void update(Restaurant restaurant) {
         Assert.notNull(restaurant, "restaurant must not be null");
-        restaurantRepository.save(restaurant);
+        checkNotFoundWithId(restaurantRepository.save(restaurant), restaurant.getId());
     }
 
     public Restaurant create(Restaurant restaurant) {

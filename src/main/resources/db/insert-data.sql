@@ -34,7 +34,7 @@ VALUES (TODAY(), '100002'),
        (DATEADD('DAY', -1, TODAY()), '100005'),
        (DATEADD('DAY', -1, TODAY()), '100006');
 
-INSERT INTO dish (name, price, lunch_menu_id)
+INSERT INTO dish (name, price, lunchmenu_id)
 VALUES ('Закуска «Джумбус»', 890, 100007),
        ('Суп из ягнёнка', 340, 100007),
        ('Панированный сыр  ', 380, 100007),
@@ -59,6 +59,6 @@ VALUES ('Закуска «Джумбус»', 890, 100007),
        ('Грибной крем-суп', 390, 100015),
        ('Сациви с курицей', 470, 100016);
 
-INSERT INTO vote (user_id, lunch_menu_id)
+INSERT INTO vote (user_id, lunchmenu_id)
 VALUES (100000, 100007),
        (100001, 100008)

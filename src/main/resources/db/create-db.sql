@@ -1,9 +1,9 @@
-DROP TABLE IF EXISTS user;
-DROP TABLE IF EXISTS user_roles;
-DROP TABLE IF EXISTS restaurant;
-DROP TABLE IF EXISTS lunch_menu;
-DROP TABLE IF EXISTS dish;
 DROP TABLE IF EXISTS vote;
+DROP TABLE IF EXISTS dish;
+DROP TABLE IF EXISTS lunch_menu;
+DROP TABLE IF EXISTS restaurant;
+DROP TABLE IF EXISTS user_roles;
+DROP TABLE IF EXISTS user;
 DROP SEQUENCE IF EXISTS global_seq;
 
 CREATE SEQUENCE global_seq START WITH 100000;
@@ -45,15 +45,15 @@ CREATE TABLE dish
     id            INTEGER DEFAULT global_seq.nextval PRIMARY KEY,
     name          VARCHAR(255) NOT NULL,
     price         BIGINT       NOT NULL,
-    lunch_menu_id INTEGER      NOT NULL,
-    FOREIGN KEY (lunch_menu_id) REFERENCES lunch_menu (id) ON DELETE CASCADE
+    lunchmenu_id INTEGER      NOT NULL,
+    FOREIGN KEY (lunchmenu_id) REFERENCES lunch_menu (id) ON DELETE CASCADE
 );
 
 CREATE TABLE vote
 (
     id            INTEGER DEFAULT global_seq.nextval PRIMARY KEY,
     user_id       INTEGER NOT NULL,
-    lunch_menu_id INTEGER NOT NULL,
+    lunchmenu_id INTEGER NOT NULL,
     FOREIGN KEY (user_id) REFERENCES user (id) ON DELETE CASCADE,
-    FOREIGN KEY (lunch_menu_id) REFERENCES lunch_menu (id) ON DELETE CASCADE
+    FOREIGN KEY (lunchmenu_id) REFERENCES lunch_menu (id) ON DELETE CASCADE
 );
