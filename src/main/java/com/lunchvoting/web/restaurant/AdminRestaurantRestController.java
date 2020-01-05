@@ -2,7 +2,6 @@ package com.lunchvoting.web.restaurant;
 
 import com.lunchvoting.View;
 import com.lunchvoting.model.Dish;
-import com.lunchvoting.model.LunchMenu;
 import com.lunchvoting.model.Restaurant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

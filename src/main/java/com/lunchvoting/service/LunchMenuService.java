@@ -3,7 +3,6 @@ package com.lunchvoting.service;
 import com.lunchvoting.model.LunchMenu;
 import com.lunchvoting.model.Restaurant;
 import com.lunchvoting.repository.LunchMenuRepository;
-import com.lunchvoting.repository.RestaurantRepository;
 import com.lunchvoting.util.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

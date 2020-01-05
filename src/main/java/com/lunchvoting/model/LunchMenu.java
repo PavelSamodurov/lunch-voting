@@ -1,5 +1,7 @@
 package com.lunchvoting.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Set;
@@ -15,8 +17,12 @@ public class LunchMenu extends AbstractBaseEntity {
     @ManyToOne(fetch = FetchType.EAGER)
     private Restaurant restaurant;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "lunchMenu")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "lunchMenu")
     Set<Dish> dishes;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "lunchMenu")
+    @JsonIgnore
+    Set<Vote> votes;
 
     public LunchMenu(Integer id, LocalDate date, Restaurant restaurant) {
         super(id);

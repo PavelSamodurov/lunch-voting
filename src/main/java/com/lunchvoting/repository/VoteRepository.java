@@ -4,6 +4,7 @@ import com.lunchvoting.model.LunchMenu;
 import com.lunchvoting.model.Restaurant;
 import com.lunchvoting.model.User;
 import com.lunchvoting.model.Vote;
+import com.lunchvoting.util.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -16,10 +17,17 @@ public class VoteRepository {
     @Autowired
     private CrudVoteRepository crudVoteRepository;
 
-    public Vote save(User user, LunchMenu lunchMenu){
+    @Autowired
+    private CrudUserRepository crudUserRepository;
+
+    @Autowired
+    private CrudLunchMenuRepository crudLunchMenuRepository;
+
+    public Vote save(int userId, int restaurantId){
         Vote vote = new Vote();
-        vote.setUser(user);
-        vote.setLunchMenu(lunchMenu);
+        vote.setUser(crudUserRepository.getOne(userId));
+        vote.setLunchMenu(crudLunchMenuRepository.getByRestaurant_IdAndDate(restaurantId,
+                LocalDate.now()).orElseThrow(() -> new NotFoundException("Lunch menu for " + restaurantId + " on today is not found")));
         return crudVoteRepository.save(vote);
     }
 
@@ -27,8 +35,8 @@ public class VoteRepository {
         return crudVoteRepository.delete(id) != 0;
     }
 
-    public Optional<Vote> getByUserAndLunchMenu_Date(User user, LocalDate date){
-        return crudVoteRepository.getByUserAndLunchMenu_Date(user, date);
+    public Optional<Vote> getByUser_IdAndLunchMenu_Date(int userId, LocalDate date){
+        return crudVoteRepository.getByUser_IdAndLunchMenu_Date(userId, date);
     }
 
     public List<Vote> getAllByLunchMenu_RestaurantAndLunchMenu_Date(Restaurant restaurant, LocalDate date){
