@@ -3,6 +3,7 @@ package com.lunchvoting.service;
 import com.lunchvoting.model.LunchMenu;
 import com.lunchvoting.model.Restaurant;
 import com.lunchvoting.repository.LunchMenuRepository;
+import com.lunchvoting.repository.RestaurantRepository;
 import com.lunchvoting.util.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,9 @@ public class LunchMenuService {
 
     @Autowired
     LunchMenuRepository lunchMenuRepository;
+
+    @Autowired
+    RestaurantService restaurantService;
 
     public LunchMenu get(int id){
         return lunchMenuRepository.get(id)
@@ -37,6 +41,12 @@ public class LunchMenuService {
     public LunchMenu getByRestaurantIdAndDate(int restaurantId, LocalDate date){
         return lunchMenuRepository.getByRestaurantIdAndDate(restaurantId, date)
                 .orElseThrow(()-> new NotFoundException("Lunch menu for " + restaurantId + " on " + date + " is not found"));
+    }
+
+    public LunchMenu getOrCreateIfNotExistByRestaurantIdAndDate(int restaurantId, LocalDate date){
+        Restaurant restaurant = restaurantService.get(restaurantId);
+        return lunchMenuRepository.getByRestaurantIdAndDate(restaurantId, date)
+                .orElse(create(LocalDate.now(), restaurant));
     }
 
     public List<LunchMenu> getAllByRestaurantId(int restaurantId){

@@ -1,5 +1,6 @@
 package com.lunchvoting.web.restaurant;
 
+import com.lunchvoting.model.Dish;
 import com.lunchvoting.model.LunchMenu;
 import com.lunchvoting.model.Restaurant;
 import org.slf4j.Logger;
@@ -65,5 +66,10 @@ public class UserRestaurantRestController extends AbstractRestaurantController {
                                                  @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date){
         log.info("get lunches for restaurant {} on {}", id, date);
         return lunchMenuService.getByRestaurantIdAndDate(id, date);
+    }
+
+    @GetMapping("/dishes/{id}")
+    public Dish getDish(@PathVariable int id){
+        return dishService.get(id);
     }
 }

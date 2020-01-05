@@ -1,6 +1,7 @@
 package com.lunchvoting.web.restaurant;
 
 import com.lunchvoting.View;
+import com.lunchvoting.model.Dish;
 import com.lunchvoting.model.LunchMenu;
 import com.lunchvoting.model.Restaurant;
 import org.slf4j.Logger;
@@ -38,6 +39,12 @@ public class AdminRestaurantRestController extends AbstractRestaurantController{
         return super.getAll();
     }
 
+    @Override
+    @GetMapping("/by")
+    public Restaurant getByName(String name){
+        return super.getByName(name);
+    }
+
     @DeleteMapping("/{id}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void delete(@PathVariable int id) {
@@ -66,9 +73,31 @@ public class AdminRestaurantRestController extends AbstractRestaurantController{
         return ResponseEntity.created(uriOfNewResource).body(created);
     }
 
-    @Override
-    @GetMapping("/by")
-    public Restaurant getByName(String name){
-        return super.getByName(name);
+    @PostMapping(value = "/{restaurantId}/lunches/today", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Dish> addDish(@PathVariable int restaurantId, @RequestBody Dish dish){
+        log.info("add dish for restaurant {}", restaurantId);
+        dish.setLunchMenu(lunchMenuService.getOrCreateIfNotExistByRestaurantIdAndDate(restaurantId, LocalDate.now()));
+        Dish created = dishService.create(dish);
+
+        URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
+                .path(REST_URL + "/{restaurantId}/lunches/today/dishes/{id}")
+                .buildAndExpand(created.getId()).toUri();
+
+        return ResponseEntity.created(uriOfNewResource).body(created);
+    }
+
+    @DeleteMapping("/dishes/{id}")
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public void deleteDish(@PathVariable int id){
+        log.info("delete dish {}", id);
+        dishService.delete(id);
+    }
+
+    @PutMapping(value = "/dishes/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public void updateDish(@Validated(View.Web.class) @RequestBody Dish dish, @PathVariable int id) {
+        assureIdConsistent(dish, id);
+        log.info("update dish {}", dish);
+        dishService.update(dish);
     }
 }

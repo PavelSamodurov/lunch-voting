@@ -1,6 +1,7 @@
 package com.lunchvoting.web.restaurant;
 
 import com.lunchvoting.model.Restaurant;
+import com.lunchvoting.service.DishService;
 import com.lunchvoting.service.LunchMenuService;
 import com.lunchvoting.service.RestaurantService;
 import org.slf4j.Logger;
@@ -18,6 +19,9 @@ public abstract class AbstractRestaurantController {
 
     @Autowired
     LunchMenuService lunchMenuService;
+
+    @Autowired
+    DishService dishService;
 
     public Restaurant get(@PathVariable int id){
         log.info("get restaurant {}", id);
