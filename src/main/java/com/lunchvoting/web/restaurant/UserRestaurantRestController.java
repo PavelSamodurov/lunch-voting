@@ -1,14 +1,20 @@
 package com.lunchvoting.web.restaurant;
 
+import com.lunchvoting.AuthorizedUser;
 import com.lunchvoting.model.Dish;
 import com.lunchvoting.model.LunchMenu;
 import com.lunchvoting.model.Restaurant;
+import com.lunchvoting.model.Vote;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -71,5 +77,17 @@ public class UserRestaurantRestController extends AbstractRestaurantController {
     @GetMapping("/dishes/{id}")
     public Dish getDish(@PathVariable int id){
         return dishService.get(id);
+    }
+
+    @PostMapping(value = "/{restaurantId}/vote", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Vote> vote(@PathVariable int restaurantId, @AuthenticationPrincipal AuthorizedUser authUser){
+        log.info("vote for restaurant {}", restaurantId);
+        Vote vote = voteService.vote(authUser.getId(), restaurantId);
+
+        URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
+                .path(REST_URL + "/votes/{id}")
+                .buildAndExpand(vote.getId()).toUri();
+
+        return ResponseEntity.created(uriOfNewResource).body(vote);
     }
 }

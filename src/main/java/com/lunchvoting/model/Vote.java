@@ -13,7 +13,7 @@ public class Vote extends AbstractBaseEntity {
     @ManyToOne
     User user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     LunchMenu lunchMenu;
 
     public Vote() {

@@ -23,6 +23,10 @@ public class VoteRepository {
     @Autowired
     private CrudLunchMenuRepository crudLunchMenuRepository;
 
+    public Optional<Vote> get(int id) {
+        return crudVoteRepository.getById(id);
+    }
+
     public Vote save(int userId, int restaurantId){
         Vote vote = new Vote();
         vote.setUser(crudUserRepository.getOne(userId));
@@ -37,6 +41,10 @@ public class VoteRepository {
 
     public Optional<Vote> getByUser_IdAndLunchMenu_Date(int userId, LocalDate date){
         return crudVoteRepository.getByUser_IdAndLunchMenu_Date(userId, date);
+    }
+
+    public List<Vote> getAllByLunchMenu_Date(LocalDate date){
+        return crudVoteRepository.getAllByLunchMenu_Date(date);
     }
 
     public List<Vote> getAllByLunchMenu_RestaurantAndLunchMenu_Date(Restaurant restaurant, LocalDate date){

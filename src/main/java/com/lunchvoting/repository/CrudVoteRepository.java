@@ -1,7 +1,5 @@
 package com.lunchvoting.repository;
-
 import com.lunchvoting.model.Restaurant;
-import com.lunchvoting.model.User;
 import com.lunchvoting.model.Vote;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -23,4 +21,8 @@ public interface CrudVoteRepository extends JpaRepository<Vote, Integer> {
     Optional<Vote> getByUser_IdAndLunchMenu_Date(int userId, LocalDate date);
 
     List<Vote> getAllByLunchMenu_RestaurantAndLunchMenu_Date(Restaurant restaurant, LocalDate date);
+
+    List<Vote> getAllByLunchMenu_Date(LocalDate date);
+
+    Optional<Vote> getById(int id);
 }

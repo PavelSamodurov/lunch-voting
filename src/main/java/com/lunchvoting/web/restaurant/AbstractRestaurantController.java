@@ -4,6 +4,7 @@ import com.lunchvoting.model.Restaurant;
 import com.lunchvoting.service.DishService;
 import com.lunchvoting.service.LunchMenuService;
 import com.lunchvoting.service.RestaurantService;
+import com.lunchvoting.service.VoteService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,9 @@ public abstract class AbstractRestaurantController {
 
     @Autowired
     DishService dishService;
+
+    @Autowired
+    VoteService voteService;
 
     public Restaurant get(@PathVariable int id){
         log.info("get restaurant {}", id);
