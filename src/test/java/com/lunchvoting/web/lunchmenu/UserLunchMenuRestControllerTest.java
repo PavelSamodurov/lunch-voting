@@ -7,11 +7,11 @@ import org.springframework.http.MediaType;
 
 import java.time.LocalDate;
 
-import static com.lunchvoting.LunchMenuTestData.*;
-import static com.lunchvoting.RestaurantTestData.*;
+import static com.lunchvoting.testdata.LunchMenuTestData.*;
+import static com.lunchvoting.testdata.RestaurantTestData.*;
 import static com.lunchvoting.TestUtil.readFromJsonMvcResult;
-import static com.lunchvoting.UserTestData.ADMIN;
-import static com.lunchvoting.UserTestData.USER;
+import static com.lunchvoting.testdata.UserTestData.ADMIN;
+import static com.lunchvoting.testdata.UserTestData.USER;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;

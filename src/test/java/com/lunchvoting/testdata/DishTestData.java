@@ -1,10 +1,11 @@
-package com.lunchvoting;
+package com.lunchvoting.testdata;
 
+import com.lunchvoting.TestMatchers;
 import com.lunchvoting.model.Dish;
 
 import java.util.Set;
 
-import static com.lunchvoting.LunchMenuTestData.*;
+import static com.lunchvoting.testdata.LunchMenuTestData.*;
 import static com.lunchvoting.model.AbstractBaseEntity.START_SEQ;
 
 public class DishTestData {

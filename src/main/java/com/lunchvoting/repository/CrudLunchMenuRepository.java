@@ -1,7 +1,6 @@
 package com.lunchvoting.repository;
 
 import com.lunchvoting.model.LunchMenu;
-import com.lunchvoting.model.Restaurant;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

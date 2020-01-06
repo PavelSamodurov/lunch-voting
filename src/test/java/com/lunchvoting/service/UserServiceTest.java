@@ -5,14 +5,11 @@ import com.lunchvoting.model.User;
 import com.lunchvoting.util.exception.NotFoundException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 
 import javax.validation.ConstraintViolationException;
-import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
-import static com.lunchvoting.UserTestData.*;
+import static com.lunchvoting.testdata.UserTestData.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class UserServiceTest extends AbstractServiceTest {
@@ -21,7 +18,7 @@ public class UserServiceTest extends AbstractServiceTest {
     protected UserService service;
 
     @Test
-    void create() throws Exception {
+    void create() {
         User newUser = getNew();
         User created = service.create(new User(newUser));
         Integer newId = created.getId();
@@ -31,57 +28,51 @@ public class UserServiceTest extends AbstractServiceTest {
     }
 
     @Test
-    void duplicateMailCreate() throws Exception {
-        assertThrows(DataAccessException.class, () ->
-                service.create(new User(null, "Duplicate", "user@yandex.ru", "newPass",  Role.ROLE_USER)));
-    }
-
-    @Test
-    void delete() throws Exception {
+    void delete() {
         service.delete(USER_ID);
         assertThrows(NotFoundException.class, () ->
                 service.delete(USER_ID));
     }
 
     @Test
-    void deletedNotFound() throws Exception {
+    void deletedNotFound() {
         assertThrows(NotFoundException.class, () ->
                 service.delete(1));
     }
 
     @Test
-    void get() throws Exception {
+    void get(){
         User user = service.get(ADMIN_ID);
         USER_MATCHERS.assertMatch(user, ADMIN);
     }
 
     @Test
-    void getNotFound() throws Exception {
+    void getNotFound() {
         assertThrows(NotFoundException.class, () ->
                 service.get(1));
     }
 
     @Test
-    void getByEmail() throws Exception {
+    void getByEmail(){
         User user = service.getByEmail("admin@gmail.com");
         USER_MATCHERS.assertMatch(user, ADMIN);
     }
 
     @Test
-    void update() throws Exception {
+    void update() {
         User updated = getUpdated();
         service.update(new User(updated));
         USER_MATCHERS.assertMatch(service.get(USER_ID), updated);
     }
 
     @Test
-    void getAll() throws Exception {
+    void getAll() {
         List<User> all = service.getAll();
         USER_MATCHERS.assertMatch(all, ADMIN, USER);
     }
 
     @Test
-    void createWithException() throws Exception {
+    void createWithException() {
         validateRootCause(() -> service.create(new User(null, "  ", "mail@yandex.ru", "password",   Role.ROLE_USER)), ConstraintViolationException.class);
         validateRootCause(() -> service.create(new User(null, "User", "  ", "password",  Role.ROLE_USER)), ConstraintViolationException.class);
         validateRootCause(() -> service.create(new User(null, "User", "mail@yandex.ru", "  ",  Role.ROLE_USER)), ConstraintViolationException.class);

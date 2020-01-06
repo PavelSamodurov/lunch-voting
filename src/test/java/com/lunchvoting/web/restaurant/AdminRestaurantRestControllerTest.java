@@ -1,6 +1,6 @@
 package com.lunchvoting.web.restaurant;
 
-import com.lunchvoting.RestaurantTestData;
+import com.lunchvoting.testdata.RestaurantTestData;
 import com.lunchvoting.TestUtil;
 import com.lunchvoting.model.Restaurant;
 import com.lunchvoting.service.RestaurantService;
@@ -11,9 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.ResultActions;
 
-import static com.lunchvoting.RestaurantTestData.*;
+import static com.lunchvoting.testdata.RestaurantTestData.*;
 import static com.lunchvoting.TestUtil.readFromJsonMvcResult;
-import static com.lunchvoting.UserTestData.*;
+import static com.lunchvoting.testdata.UserTestData.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;

@@ -5,9 +5,9 @@ import com.lunchvoting.util.exception.NotFoundException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import static com.lunchvoting.RestaurantTestData.*;
-import static com.lunchvoting.UserTestData.USER_ID;
-import static com.lunchvoting.VoteTestData.*;
+import static com.lunchvoting.testdata.RestaurantTestData.*;
+import static com.lunchvoting.testdata.UserTestData.USER_ID;
+import static com.lunchvoting.testdata.VoteTestData.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class VoteServiceTest extends AbstractServiceTest {

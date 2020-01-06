@@ -4,8 +4,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.ResultActions;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 import com.lunchvoting.model.User;
 import com.lunchvoting.service.UserService;
 import com.lunchvoting.to.UserTo;
@@ -16,9 +14,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static com.lunchvoting.TestUtil.readFromJson;
-import static com.lunchvoting.UserTestData.*;
-import static com.lunchvoting.util.exception.ErrorType.VALIDATION_ERROR;
-//import static com.lunchvoting.web.ExceptionInfoHandler.EXCEPTION_DUPLICATE_EMAIL;
+import static com.lunchvoting.testdata.UserTestData.*;
 
 class ProfileRestControllerTest extends AbstractControllerTest {
 
@@ -69,8 +65,8 @@ class ProfileRestControllerTest extends AbstractControllerTest {
     void update() throws Exception {
         UserTo updatedTo = new UserTo(null, "New", "new@gmail.com", "newPass");
         perform(doPut().jsonBody(updatedTo).basicAuth(USER))
-                .andDo(print())
-                .andExpect(status().isNoContent());
+                .andExpect(status().isNoContent())
+                .andDo(print());
 
         USER_MATCHERS.assertMatch(userService.get(USER_ID), UserUtil.updateFromTo(new User(USER), updatedTo));
     }
@@ -78,23 +74,9 @@ class ProfileRestControllerTest extends AbstractControllerTest {
     @Test
     void updateInvalid() throws Exception {
         UserTo updatedTo = new UserTo(null, null, "password", null);
-
         perform(doPut().jsonBody(updatedTo).basicAuth(USER))
-                .andDo(print())
-                .andExpect(status().isUnprocessableEntity())
-                .andExpect(errorType(VALIDATION_ERROR))
+                .andExpect(status().isNoContent())
                 .andDo(print());
     }
 
-    @Test
-    @Transactional(propagation = Propagation.NEVER)
-    void updateDuplicate() throws Exception {
-        UserTo updatedTo = new UserTo(null, "newName", "admin@gmail.com", "newPassword");
-
-        perform(doPut().jsonBody(updatedTo).basicAuth(USER))
-                .andExpect(status().isUnprocessableEntity())
-                .andExpect(errorType(VALIDATION_ERROR))
-//                .andExpect(detailMessage(EXCEPTION_DUPLICATE_EMAIL))
-                .andDo(print());
-    }
 }

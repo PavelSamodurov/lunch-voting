@@ -44,9 +44,4 @@ public class RestaurantService {
         return restaurantRepository.getByName(name)
                 .orElseThrow(()-> new NotFoundException("Restaurant " + name + " is not found"));
     }
-
-//    public Restaurant getWith(int id) {
-//        return checkNotFoundWithId(repository.getWithUser(id, userId), id);
-//    }
-
 }

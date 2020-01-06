@@ -2,12 +2,10 @@ package com.lunchvoting.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors;
 import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
-import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -15,13 +13,11 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import com.lunchvoting.model.User;
-import com.lunchvoting.util.exception.ErrorType;
 import com.lunchvoting.web.json.JsonUtil;
 
 import javax.annotation.PostConstruct;
 
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static com.lunchvoting.web.AbstractControllerTest.RequestWrapper.wrap;
 
 @SpringJUnitWebConfig(locations = {
@@ -29,8 +25,7 @@ import static com.lunchvoting.web.AbstractControllerTest.RequestWrapper.wrap;
         "classpath:spring/spring-mvc.xml",
         "classpath:spring/spring-db.xml"
 })
-//@WebAppConfiguration
-//@ExtendWith(SpringExtension.class)
+
 @Transactional
 abstract public class AbstractControllerTest {
 
@@ -104,7 +99,7 @@ abstract public class AbstractControllerTest {
         return wrap(MockMvcRequestBuilders.put(url + "{id}", id));
     }
 
-    protected RequestWrapper doPost(String pad) throws Exception {
+    protected RequestWrapper doPost(String pad) {
         return wrap(MockMvcRequestBuilders.post(url + pad));
     }
 
@@ -145,22 +140,5 @@ abstract public class AbstractControllerTest {
             builder.with(SecurityMockMvcRequestPostProcessors.httpBasic(user.getEmail(), user.getPassword()));
             return this;
         }
-
-        public RequestWrapper auth(User user) {
-            builder.with(SecurityMockMvcRequestPostProcessors.authentication(new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword())));
-            return this;
-        }
-    }
-
-    private String getMessage(String code) {
-        return messageUtil.getMessage(code, MessageUtil.RU_LOCALE);
-    }
-
-    public ResultMatcher errorType(ErrorType type) {
-        return jsonPath("$.type").value(type.name());
-    }
-
-    public ResultMatcher detailMessage(String code) {
-        return jsonPath("$.details").value(getMessage(code));
     }
 }

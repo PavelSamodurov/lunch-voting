@@ -36,8 +36,4 @@ public class RestaurantRepository {
     public List<Restaurant> getAll(){
         return crudRestaurantRepository.findAll();
     }
-
-    public List<Restaurant> getRestaurantsByLunchMenuDate(LocalDate date){
-        return crudRestaurantRepository.getRestaurantsByLunchMenuListIs(date);
-    }
 }

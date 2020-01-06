@@ -4,26 +4,19 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.ResultActions;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 import com.lunchvoting.TestUtil;
-import com.lunchvoting.UserTestData;
-import com.lunchvoting.model.Role;
+import com.lunchvoting.testdata.UserTestData;
 import com.lunchvoting.model.User;
 import com.lunchvoting.service.UserService;
 import com.lunchvoting.util.exception.NotFoundException;
 import com.lunchvoting.web.AbstractControllerTest;
-
-import java.util.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static com.lunchvoting.UserTestData.*;
-import static com.lunchvoting.util.exception.ErrorType.VALIDATION_ERROR;
-//import static com.lunchvoting.web.ExceptionInfoHandler.EXCEPTION_DUPLICATE_EMAIL;
+import static com.lunchvoting.testdata.UserTestData.*;
 
 class AdminRestControllerTest extends AbstractControllerTest {
 
@@ -127,47 +120,12 @@ class AdminRestControllerTest extends AbstractControllerTest {
         assertFalse(userService.get(USER_ID).isEnabled());
     }
 
-
-    @Test
-    void createInvalid() throws Exception {
-        User expected = new User(null, null, "", "newPass", Role.ROLE_USER, Role.ROLE_ADMIN);
-        perform(doPost().jsonBody(expected).basicAuth(ADMIN))
-                .andExpect(status().isUnprocessableEntity())
-                .andExpect(errorType(VALIDATION_ERROR))
-                .andDo(print());
-    }
-
     @Test
     void updateInvalid() throws Exception {
         User updated = new User(USER);
         updated.setName("");
         perform(doPut(USER_ID).jsonBody(updated).basicAuth(ADMIN))
-                .andExpect(status().isUnprocessableEntity())
-                .andDo(print())
-                .andExpect(errorType(VALIDATION_ERROR))
+                .andExpect(status().isBadRequest())
                 .andDo(print());
-    }
-
-//    @Test
-//    @Transactional(propagation = Propagation.NEVER)
-//    void updateDuplicate() throws Exception {
-//        User updated = new User(USER);
-//        updated.setEmail("admin@gmail.com");
-//        perform(doPut(USER_ID).jsonUserWithPassword(updated).basicAuth(ADMIN))
-//                .andExpect(status().isUnprocessableEntity())
-//                .andExpect(errorType(VALIDATION_ERROR))
-////                .andExpect(detailMessage(EXCEPTION_DUPLICATE_EMAIL))
-//                .andDo(print());
-//    }
-
-    @Test
-    @Transactional(propagation = Propagation.NEVER)
-    void createDuplicate() throws Exception {
-        User expected = new User(null, "New", "user@yandex.ru", "newPass", Role.ROLE_USER, Role.ROLE_ADMIN);
-        perform(doPost().jsonUserWithPassword(expected).basicAuth(ADMIN))
-                .andExpect(status().isUnprocessableEntity())
-                .andExpect(errorType(VALIDATION_ERROR));
-//                .andExpect(detailMessage(EXCEPTION_DUPLICATE_EMAIL));
-
     }
 }

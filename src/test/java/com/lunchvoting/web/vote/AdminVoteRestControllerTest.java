@@ -10,8 +10,8 @@ import org.springframework.http.MediaType;
 import java.time.LocalDate;
 
 import static com.lunchvoting.TestUtil.readFromJsonMvcResult;
-import static com.lunchvoting.UserTestData.ADMIN;
-import static com.lunchvoting.VoteTestData.*;
+import static com.lunchvoting.testdata.UserTestData.ADMIN;
+import static com.lunchvoting.testdata.VoteTestData.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;

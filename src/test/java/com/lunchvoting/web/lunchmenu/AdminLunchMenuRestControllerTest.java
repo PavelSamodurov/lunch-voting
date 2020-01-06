@@ -6,8 +6,8 @@ import com.lunchvoting.web.AbstractControllerTest;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import static com.lunchvoting.LunchMenuTestData.LUNCH_MENU1_ID;
-import static com.lunchvoting.UserTestData.ADMIN;
+import static com.lunchvoting.testdata.LunchMenuTestData.LUNCH_MENU1_ID;
+import static com.lunchvoting.testdata.UserTestData.ADMIN;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;

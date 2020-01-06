@@ -1,8 +1,5 @@
 package com.lunchvoting.repository;
 
-import com.lunchvoting.model.LunchMenu;
-import com.lunchvoting.model.Restaurant;
-import com.lunchvoting.model.User;
 import com.lunchvoting.model.Vote;
 import com.lunchvoting.util.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,9 +42,5 @@ public class VoteRepository {
 
     public List<Vote> getAllByLunchMenu_Date(LocalDate date){
         return crudVoteRepository.getAllByLunchMenu_Date(date);
-    }
-
-    public List<Vote> getAllByLunchMenu_RestaurantAndLunchMenu_Date(Restaurant restaurant, LocalDate date){
-        return crudVoteRepository.getAllByLunchMenu_RestaurantAndLunchMenu_Date(restaurant, date);
     }
 }

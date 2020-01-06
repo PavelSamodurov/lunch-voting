@@ -7,8 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
-import java.util.List;
 import java.util.Optional;
 
 @Transactional(readOnly = true)
@@ -21,6 +19,4 @@ public interface CrudRestaurantRepository extends JpaRepository<Restaurant, Inte
     Optional<Restaurant> getById(int id);
 
     Optional<Restaurant> getByName(String restaurantName);
-
-    List<Restaurant> getRestaurantsByLunchMenuListIs(LocalDate date);
 }

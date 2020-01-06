@@ -1,5 +1,6 @@
-package com.lunchvoting;
+package com.lunchvoting.testdata;
 
+import com.lunchvoting.TestMatchers;
 import com.lunchvoting.model.Restaurant;
 
 import java.util.List;

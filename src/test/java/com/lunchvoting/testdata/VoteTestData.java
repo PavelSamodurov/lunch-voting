@@ -1,13 +1,14 @@
-package com.lunchvoting;
+package com.lunchvoting.testdata;
 
+import com.lunchvoting.TestMatchers;
 import com.lunchvoting.model.Vote;
 
 import java.util.List;
 
-import static com.lunchvoting.LunchMenuTestData.LUNCH_MENU1;
-import static com.lunchvoting.LunchMenuTestData.LUNCH_MENU2;
-import static com.lunchvoting.UserTestData.ADMIN;
-import static com.lunchvoting.UserTestData.USER;
+import static com.lunchvoting.testdata.LunchMenuTestData.LUNCH_MENU1;
+import static com.lunchvoting.testdata.LunchMenuTestData.LUNCH_MENU2;
+import static com.lunchvoting.testdata.UserTestData.ADMIN;
+import static com.lunchvoting.testdata.UserTestData.USER;
 import static com.lunchvoting.model.AbstractBaseEntity.START_SEQ;
 
 public class VoteTestData {

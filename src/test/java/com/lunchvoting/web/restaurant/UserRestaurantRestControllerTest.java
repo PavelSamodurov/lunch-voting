@@ -7,11 +7,11 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 
-import static com.lunchvoting.RestaurantTestData.*;
+import static com.lunchvoting.testdata.RestaurantTestData.*;
 import static com.lunchvoting.TestUtil.readFromJsonMvcResult;
-import static com.lunchvoting.UserTestData.ADMIN;
-import static com.lunchvoting.UserTestData.USER;
-import static com.lunchvoting.VoteTestData.VOTE1_ID;
+import static com.lunchvoting.testdata.UserTestData.ADMIN;
+import static com.lunchvoting.testdata.UserTestData.USER;
+import static com.lunchvoting.testdata.VoteTestData.VOTE1_ID;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;

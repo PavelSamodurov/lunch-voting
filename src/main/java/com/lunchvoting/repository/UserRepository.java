@@ -2,7 +2,6 @@ package com.lunchvoting.repository;
 
 import com.lunchvoting.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 

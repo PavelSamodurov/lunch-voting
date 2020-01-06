@@ -8,9 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.time.LocalDate;
 import java.util.List;
 
-import static com.lunchvoting.LunchMenuTestData.*;
-import static com.lunchvoting.RestaurantTestData.RESTAURANT1;
-import static com.lunchvoting.RestaurantTestData.RESTAURANT1_ID;
+import static com.lunchvoting.testdata.LunchMenuTestData.*;
+import static com.lunchvoting.testdata.RestaurantTestData.RESTAURANT1;
+import static com.lunchvoting.testdata.RestaurantTestData.RESTAURANT1_ID;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LunchMenuServiceTest extends AbstractServiceTest {
@@ -36,13 +36,13 @@ class LunchMenuServiceTest extends AbstractServiceTest {
     }
 
     @Test
-    void get() throws Exception {
+    void get() {
         LunchMenu actual = lunchMenuService.get(LUNCH_MENU1_ID);
         LUNCH_MENU_MATCHERS.assertMatch(actual, LUNCH_MENU1);
     }
 
     @Test
-    void getNotFound() throws Exception {
+    void getNotFound() {
         assertThrows(NotFoundException.class, () ->
                 lunchMenuService.get(1));
     }

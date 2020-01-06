@@ -9,7 +9,7 @@ import javax.validation.ConstraintViolationException;
 
 import java.util.List;
 
-import static com.lunchvoting.RestaurantTestData.*;
+import static com.lunchvoting.testdata.RestaurantTestData.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class RestaurantServiceTest extends AbstractServiceTest {
@@ -18,20 +18,20 @@ class RestaurantServiceTest extends AbstractServiceTest {
     protected RestaurantService restaurantService;
 
     @Test
-    void delete() throws Exception {
+    void delete() {
         restaurantService.delete(RESTAURANT1_ID);
         assertThrows(NotFoundException.class, () ->
                 restaurantService.get(RESTAURANT1_ID));
     }
 
     @Test
-    void deleteNotFound() throws Exception {
+    void deleteNotFound() {
         assertThrows(NotFoundException.class, () ->
                 restaurantService.delete(1));
     }
 
     @Test
-    void create() throws Exception {
+    void create() {
         Restaurant newRestaurant = getNew();
         Restaurant created = restaurantService.create(newRestaurant);
         Integer newId = created.getId();
@@ -41,26 +41,26 @@ class RestaurantServiceTest extends AbstractServiceTest {
     }
 
     @Test
-    void get() throws Exception {
+    void get() {
         Restaurant actual = restaurantService.get(RESTAURANT1_ID);
         RESTAURANT_MATCHERS.assertMatch(actual, RESTAURANT1);
     }
 
     @Test
-    void getNotFound() throws Exception {
+    void getNotFound() {
         assertThrows(NotFoundException.class, () ->
                 restaurantService.get(1));
     }
 
     @Test
-    void update() throws Exception {
+    void update() {
         Restaurant updated = getUpdated();
         restaurantService.update(updated);
         RESTAURANT_MATCHERS.assertMatch(restaurantService.get(RESTAURANT1_ID), updated);
     }
 
     @Test
-    void updateNotFound() throws Exception {
+    void updateNotFound() {
         Restaurant newRestaurant = getNew();
         newRestaurant.setId(1);
         NotFoundException e = assertThrows(NotFoundException.class, () -> restaurantService.update(newRestaurant));
@@ -68,7 +68,7 @@ class RestaurantServiceTest extends AbstractServiceTest {
     }
 
     @Test
-    void getAll() throws Exception {
+    void getAll() {
         List<Restaurant> restaurants = restaurantService.getAll();
         RESTAURANT_MATCHERS.assertMatch(restaurants, RESTAURANTS);
     }
@@ -81,7 +81,7 @@ class RestaurantServiceTest extends AbstractServiceTest {
 
 
     @Test
-    void createWithException() throws Exception {
+    void createWithException() {
         validateRootCause(() -> restaurantService.create(new Restaurant(null,null)),ConstraintViolationException.class);
     }
 }

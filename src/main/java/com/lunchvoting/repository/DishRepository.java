@@ -25,12 +25,4 @@ public class DishRepository {
     public boolean delete(int id) {
         return crudDishRepository.delete(id) != 0;
     }
-
-    public List<Dish> getAllByLunchMenu_Date(LocalDate date){
-        return crudDishRepository.getAllByLunchMenu_Date(date);
-    }
-
-    public List<Dish> getAllByLunchMenu_DateAndLunchMenu_Restaurant(LocalDate date, Restaurant restaurant){
-        return crudDishRepository.getAllByLunchMenu_DateAndLunchMenu_Restaurant(date,restaurant);
-    }
 }
