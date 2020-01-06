@@ -9,7 +9,7 @@ import javax.persistence.*;
 public class Dish extends AbstractNamedEntity {
     private Long price;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore
     LunchMenu lunchMenu;
 
