@@ -1,17 +1,8 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
-<fmt:setBundle basename="messages.app"/>
-
 <html>
-
+<head>
+    <title>Lunch Voting</title>
+</head>
 <body>
-<h3>Проект <a href="https://github.com/JavaWebinar/topjava" target="_blank">Java Enterprise (Topjava)</a></h3>
-<hr>
-<ul>
-    <li><a href="users">Users</a></li>
-</ul>
-
+    <h3><a href="https://github.com/PavelSamodurov/lunch-voting">https://github.com/PavelSamodurov/lunch-voting</a></h3>
 </body>
 </html>
