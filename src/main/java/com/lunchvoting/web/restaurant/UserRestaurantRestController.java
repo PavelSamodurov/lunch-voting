@@ -39,14 +39,14 @@ public class UserRestaurantRestController extends AbstractRestaurantController {
         return super.getByName(name);
     }
 
-    @PostMapping(value = "/{restaurantId}/vote", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/{restaurantId}/vote")
     public ResponseEntity<Vote> vote(@PathVariable int restaurantId, @AuthenticationPrincipal AuthorizedUser authUser){
         log.info("vote for restaurant {}", restaurantId);
         Vote vote = voteService.vote(authUser.getId(), restaurantId);
 
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path(REST_URL + "/votes/{id}")
-                .buildAndExpand(vote.getId()).toUri();
+                .path(REST_URL + "/{restaurantId}/vote")
+                .buildAndExpand(restaurantId).toUri();
 
         return ResponseEntity.created(uriOfNewResource).body(vote);
     }

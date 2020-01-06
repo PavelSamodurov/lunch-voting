@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.BooleanSupplier;
 
+import static com.lunchvoting.util.ValidationUtil.checkNotFoundWithId;
+
 @Service
 public class VoteService {
 
@@ -40,10 +42,14 @@ public class VoteService {
 
     private void deleteVote(Vote vote, BooleanSupplier deleteCondition){
         if(deleteCondition.getAsBoolean()){
-            voteRepository.delete(vote.getId());
+            delete(vote.getId());
         } else {
             throw new RuntimeException("It is too late, vote can't be changed");
         }
+    }
+
+    public void delete(int id){
+        checkNotFoundWithId(voteRepository.delete(id), id);
     }
 
 }

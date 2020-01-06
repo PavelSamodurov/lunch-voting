@@ -2,6 +2,8 @@ package com.lunchvoting;
 
 import com.lunchvoting.model.Vote;
 
+import java.util.List;
+
 import static com.lunchvoting.LunchMenuTestData.LUNCH_MENU1;
 import static com.lunchvoting.LunchMenuTestData.LUNCH_MENU2;
 import static com.lunchvoting.UserTestData.ADMIN;
@@ -13,6 +15,8 @@ public class VoteTestData {
 
     public static final Vote VOTE1 = new Vote(VOTE1_ID, USER, LUNCH_MENU1);
     public static final Vote VOTE2 = new Vote(VOTE1_ID + 1, ADMIN, LUNCH_MENU2);
+
+    public static final List<Vote> VOTES_LIST_ON_TODAY = List.of(VOTE1, VOTE2);
 
     public static Vote reVote() {
        return new Vote(START_SEQ + 42, USER, LUNCH_MENU2);
