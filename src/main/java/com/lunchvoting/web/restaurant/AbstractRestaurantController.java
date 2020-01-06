@@ -1,8 +1,6 @@
 package com.lunchvoting.web.restaurant;
 
 import com.lunchvoting.model.Restaurant;
-import com.lunchvoting.service.DishService;
-import com.lunchvoting.service.LunchMenuService;
 import com.lunchvoting.service.RestaurantService;
 import com.lunchvoting.service.VoteService;
 import org.slf4j.Logger;
@@ -17,12 +15,6 @@ public abstract class AbstractRestaurantController {
 
     @Autowired
     RestaurantService restaurantService;
-
-    @Autowired
-    LunchMenuService lunchMenuService;
-
-    @Autowired
-    DishService dishService;
 
     @Autowired
     VoteService voteService;

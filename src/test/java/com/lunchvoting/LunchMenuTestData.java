@@ -34,5 +34,5 @@ public class LunchMenuTestData {
         return new LunchMenu(LocalDate.now().minusDays(2), RESTAURANT1);
     }
 
-    public static TestMatchers<LunchMenu> LUNCH_MENU_MATCHERS = TestMatchers.useFieldsComparator(LunchMenu.class, "dishes");
+    public static TestMatchers<LunchMenu> LUNCH_MENU_MATCHERS = TestMatchers.useFieldsComparator(LunchMenu.class, "dishes", "votes");
 }

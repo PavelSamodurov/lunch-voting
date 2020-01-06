@@ -1,6 +1,6 @@
 package com.lunchvoting.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 
@@ -10,7 +10,8 @@ public class Dish extends AbstractNamedEntity {
     private Long price;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnore
+    @JoinColumn(name = "lunchmenu_id", nullable = false)
+    @JsonIgnoreProperties({"date", "dishes", "restaurant"})
     LunchMenu lunchMenu;
 
     public Dish() {

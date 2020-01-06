@@ -47,6 +47,14 @@ class AdminRestaurantRestControllerTest extends AbstractControllerTest {
     }
 
     @Test
+    void getByName() throws Exception {
+        perform(doGet("by?name={name}", RESTAURANT1.getName()).basicAuth(ADMIN))
+                .andExpect(status().isOk())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                .andExpect(RESTAURANT_MATCHERS.contentJson(RESTAURANT1));
+    }
+
+    @Test
     void delete() throws Exception {
         perform(doDelete(RESTAURANT1_ID).basicAuth(ADMIN))
                 .andDo(print())
@@ -74,13 +82,5 @@ class AdminRestaurantRestControllerTest extends AbstractControllerTest {
         newRestaurant.setId(newId);
         RESTAURANT_MATCHERS.assertMatch(created, newRestaurant);
         RESTAURANT_MATCHERS.assertMatch(restaurantService.get(newId), newRestaurant);
-    }
-
-    @Test
-    void getByName() throws Exception {
-        perform(doGet("by?name={name}", RESTAURANT1.getName()).basicAuth(ADMIN))
-                .andExpect(status().isOk())
-                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(RESTAURANT_MATCHERS.contentJson(RESTAURANT1));
     }
 }

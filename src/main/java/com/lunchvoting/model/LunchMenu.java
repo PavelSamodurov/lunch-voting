@@ -1,6 +1,7 @@
 package com.lunchvoting.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.BatchSize;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -18,6 +19,7 @@ public class LunchMenu extends AbstractBaseEntity {
     private Restaurant restaurant;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "lunchMenu")
+    @BatchSize(size = 200)
     Set<Dish> dishes;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "lunchMenu")

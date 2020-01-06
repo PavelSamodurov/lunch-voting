@@ -1,7 +1,6 @@
 package com.lunchvoting.web.restaurant;
 
 import com.lunchvoting.View;
-import com.lunchvoting.model.Dish;
 import com.lunchvoting.model.Restaurant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-import java.time.LocalDate;
 import java.util.List;
 
 import static com.lunchvoting.util.ValidationUtil.assureIdConsistent;
@@ -70,33 +68,5 @@ public class AdminRestaurantRestController extends AbstractRestaurantController{
                 .buildAndExpand(created.getId()).toUri();
 
         return ResponseEntity.created(uriOfNewResource).body(created);
-    }
-
-    @PostMapping(value = "/{restaurantId}/lunches/today", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Dish> addDish(@PathVariable int restaurantId, @RequestBody Dish dish){
-        log.info("add dish for restaurant {}", restaurantId);
-        dish.setLunchMenu(lunchMenuService.getOrCreateIfNotExistByRestaurantIdAndDate(restaurantId, LocalDate.now()));
-        Dish created = dishService.create(dish);
-
-        URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path(REST_URL + "/{restaurantId}/lunches/today/dishes/{id}")
-                .buildAndExpand(created.getId()).toUri();
-
-        return ResponseEntity.created(uriOfNewResource).body(created);
-    }
-
-    @DeleteMapping("/dishes/{id}")
-    @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public void deleteDish(@PathVariable int id){
-        log.info("delete dish {}", id);
-        dishService.delete(id);
-    }
-
-    @PutMapping(value = "/dishes/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public void updateDish(@Validated(View.Web.class) @RequestBody Dish dish, @PathVariable int id) {
-        assureIdConsistent(dish, id);
-        log.info("update dish {}", dish);
-        dishService.update(dish);
     }
 }

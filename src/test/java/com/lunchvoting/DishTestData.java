@@ -44,5 +44,5 @@ public class DishTestData {
         return new Dish(DISH1_ID, "Обновленная еда", 900L, LUNCH_MENU1);
     }
 
-    public static TestMatchers<Dish> DISH_MATCHERS = TestMatchers.useFieldsComparator(Dish.class);
+    public static TestMatchers<Dish> DISH_MATCHERS = TestMatchers.useFieldsComparator(Dish.class, "lunchMenu");
 }
