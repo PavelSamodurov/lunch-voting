@@ -61,7 +61,7 @@ P.P.S.: Asume that your API will be used by a frontend developer to build fronte
 `curl -s -X POST -d '{"name":"NewName", "email":"newmail@gmail.com", "password":"newPass"}' -H 'Content-Type:application/json;charset=UTF-8' http://localhost:8080/lunch-voting/rest/profile/register`
 
 #### update AuthorizedUser
-`curl -s -X PUT -d '{"name":"UpdatedName", "email":"updatedmail@gmail.com", "password":"updatedPassword"}' -H 'Content-Type:application/json;charset=UTF-8' http://localhost:8080/lunch-voting/profile --user user@yandex.ru:password`
+`curl -s -X PUT -d '{"name":"UpdatedName", "email":"updatedmail@gmail.com", "password":"updatedPassword"}' -H 'Content-Type:application/json;charset=UTF-8' http://localhost:8080/lunch-voting/rest/profile --user user@yandex.ru:password`
 
 ### /rest/restaurants
 
@@ -72,7 +72,7 @@ P.P.S.: Asume that your API will be used by a frontend developer to build fronte
 `curl -s http://localhost:8080/lunch-voting/rest/restaurants --user admin@gmail.com:admin`
 
 #### get Restaurant by Name
-`curl -s http://localhost:8080/lunch-voting/rest/rest/restaurants/by?name=Megobari --user admin@gmail.com:admin`
+`curl -s http://localhost:8080/lunch-voting/rest/restaurants/by?name=Megobari --user admin@gmail.com:admin`
 
 #### vote for Restaurant
 `curl -s -X POST http://localhost:8080/lunch-voting/rest/restaurants/100002/vote --user user@yandex.ru:password`
@@ -80,13 +80,13 @@ P.P.S.: Asume that your API will be used by a frontend developer to build fronte
 ### /rest/admin/restaurants
 
 #### create Restaurant
-`curl -s -X POST -d '{"name":"Новый ресторан"}' -H 'Content-Type:application/json;charset=UTF-8' http://localhost:8080/lunch-voting/rest/restaurants --user admin@gmail.com:admin`
+`curl -s -X POST -d '{"name":"Новый ресторан"}' -H 'Content-Type:application/json;charset=UTF-8' http://localhost:8080/lunch-voting/rest/admin/restaurants --user admin@gmail.com:admin`
 
 #### update Restaurant
-`curl -s -X PUT -d '{"name":"Обновленный ресторан"}' -H 'Content-Type:application/json;charset=UTF-8' http://localhost:8080/lunch-voting/rest/restaurants/100002 --user admin@gmail.com:admin`
+`curl -s -X PUT -d '{"name":"Обновленный ресторан"}' -H 'Content-Type:application/json;charset=UTF-8' http://localhost:8080/lunch-voting/rest/admin/restaurants/100002 --user admin@gmail.com:admin`
 
 #### delete Restaurant
-`curl -s -X DELETE http://localhost:8080/lunch-voting/rest/restaurants/100002 --user admin@gmail.com:admin`
+`curl -s -X DELETE http://localhost:8080/lunch-voting/rest/admin/restaurants/100002 --user admin@gmail.com:admin`
 
 ### /rest/lunches
 

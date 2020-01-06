@@ -26,6 +26,7 @@ public class DishService {
 
     public void update(Dish dish) {
         Assert.notNull(dish, "dish must not be null");
+        dish.setLunchMenu(get(dish.getId()).getLunchMenu());
         checkNotFoundWithId(dishRepository.save(dish), dish.getId());
     }
 
