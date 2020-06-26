@@ -41,6 +41,13 @@
         <json-path.version>2.4.0</json-path.version>
     </properties>
 
+    <scm>
+        <connection>scm:git:https://github.com/PavelSamodurov/lunch-voting.git</connection>
+        <developerConnection>scm:git:https://github.com/PavelSamodurov/lunch-voting.git</developerConnection>
+        <tag>HEAD</tag>
+        <url>https://github.com/PavelSamodurov/lunch-voting.git</url>
+    </scm>
+
     <build>
         <finalName>lunch-voting</finalName>
         <defaultGoal>package</defaultGoal>
@@ -62,7 +69,30 @@
                     <argLine>-Dfile.encoding=UTF-8</argLine>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>buildnumber-maven-plugin</artifactId>
+                <version>1.4</version>
+                <executions>
+                    <execution>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>create</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <doCheck>false</doCheck>
+                    <doUpdate>false</doUpdate>
+                </configuration>
+            </plugin>
         </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
     </build>
 
     <dependencies>
